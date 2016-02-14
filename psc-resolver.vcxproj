@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\constraint.c" />
     <ClCompile Include="src\list.c" />
     <ClCompile Include="src\main.c" />
     <ClCompile Include="src\set.c" />
@@ -148,6 +149,7 @@
     <ClCompile Include="src\var.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\constraint.h" />
     <ClInclude Include="include\defines.h" />
     <ClInclude Include="include\list.h" />
     <ClInclude Include="include\set.h" />
