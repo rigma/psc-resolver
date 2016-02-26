@@ -23,5 +23,4 @@ typedef struct {
 constraint_t *constraint_init(var_t *slave, operator_t op, void *master, master_t var);
 void constraint_free(constraint_t *c);
 
-
 #endif

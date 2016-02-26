@@ -31,8 +31,10 @@ void string_free(string_t *str) {
 	if (str == NULL)
 		return;
 
-	free(str->str);
-	free(str);
+    if (str->str != NULL)
+	    free(str->str);
+	
+    free(str);
 }
 
 string_t *string_from_stdin() {
