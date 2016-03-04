@@ -2,7 +2,7 @@
 #include <tree.h>
 
 tree_t tree_init() {
-    return leaf_init(NULL, NULL);
+    return leaf_init(NULL, NULL, NULL);
 }
 
 void tree_free(tree_t t) {

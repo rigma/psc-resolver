@@ -28,4 +28,5 @@ bool_t problem_add_constraint(problem_t *p, constraint_t *var);
 u64 *problem_solve(problem_t *p);
 bool_t problem_alloc(problem_t *p, leaf_t *root, var_t *var);
 
+void affichage(leaf_t *root);
 #endif
