@@ -173,6 +173,16 @@ bool_t list_insert(list_t *l, node_t *after, node_t *before, void *el) {
 	return TRUE;
 }
 
+u64 *list_to_u64table(list_t *l)
+{
+	u64 i = 0;
+	u64 *tab = malloc(l->size * sizeof(u64));
+	node_t *it = l->first;
+	for (; it != l->last;it = it->succ)
+		tab[i] = it->value;
+}
+
+
 bool_t list_remove(list_t *l, void *el, bool_t all) {
 	node_t *it = NULL;
 
