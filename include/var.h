@@ -6,11 +6,12 @@
 #include "str.h"
 
 typedef struct {
-	string_t *name;
+	//string_t *name;
+	u64 name;
 	set_t *def;
 } var_t;
 
-var_t *var_init(string_t *name);
+var_t *var_init(u64 /*string_t * */ name);
 void var_free(var_t *var);
 
 bool_t var_set_interval(var_t *var, u64 begin, u64 end);

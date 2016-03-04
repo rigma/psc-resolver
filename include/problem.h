@@ -7,17 +7,20 @@
 
 typedef struct {
     string_t *name;
-    union {
+	union {
+		var_t **vars;
+		size_t n_vars;
+	};
+	union {
         constraint_t **constraints;
         size_t n_constraints;
-    };
-    union {
-        var_t **vars;
-        size_t n_vars;
     };
 } problem_t;
 
 problem_t *problem_init(const char *filename);
 void problem_free(problem_t *p);
+
+bool_t problem_add_var(problem_t *p, var_t *var);
+bool_t problem_add_constraint(problem_t *p, constraint_t *var);
 
 #endif

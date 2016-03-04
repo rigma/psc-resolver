@@ -2,12 +2,12 @@
 
 #include <var.h>
 
-var_t *var_init(string_t *name) {
+var_t *var_init(u64 /*string_t  * */ name) {
 	var_t *var = (var_t*) malloc(sizeof(var_t));
 	if (var == NULL)
 		return NULL;
 
-	var->name = name == NULL ? string_from_stdin() : name;
+	var->name = name /*== NULL ? string_from_stdin() : name*/;
 	var->def = set_init();
 
 	return var;
@@ -17,7 +17,7 @@ void var_free(var_t *var) {
 	if (var == NULL)
 		return;
 
-	string_free(var->name);
+	//string_free(var->name);
 	set_free(var->def);
 	free(var);
 }

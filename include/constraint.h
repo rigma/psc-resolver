@@ -15,12 +15,12 @@ typedef enum {
 
 typedef struct {
 	var_t *slave;
-	void *master;
+	u64 master;
 	operator_t op;
 	master_t master_type;
 } constraint_t;
 
-constraint_t *constraint_init(var_t *slave, operator_t op, void *master, master_t var);
+constraint_t *constraint_init(var_t *slave, operator_t op, u64 master, master_t var);
 void constraint_free(constraint_t *c);
 
 #endif
