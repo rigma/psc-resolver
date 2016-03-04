@@ -4,7 +4,7 @@
 #include <stddef.h>
 
 #include "defines.h"
-#inlcude "list.h"
+#include "list.h"
 
 typedef struct {
 	u64 *set;

@@ -39,3 +39,57 @@ void constraint_free(constraint_t *c) {
 
 	free(c);
 }
+ 
+bool_t constraint_check(size_t size, constraint_t **constraints, leaf_t *leaf, u64 slave, u64 value)
+{
+	leaf_t *it = leaf;
+	bool_t result = TRUE;
+	size_t i = 0; // compteur des variables
+	
+	for (; i < size; i++)
+	{
+		if (slave == constraints[i]->slave)
+		{
+			if (constraints[i]->master_type == SCALAR) {
+				if (constraints[i]->op == EQUAL)
+					result = result && constraints[i]->master == value ? TRUE : FALSE;
+				else if (constraints[i]->op == DIFFERENT)
+					result = result && constraints[i]->master != value ? TRUE : FALSE;
+				else if (constraints[i]->op == SGT)
+					result = result && constraints[i]->master > value ? TRUE : FALSE;
+				else if (constraints[i]->op == SLT)
+					result = result && constraints[i]->master < value ? TRUE : FALSE;
+				else if (constraints[i]->op == GT)
+					result = result && constraints[i]->master >= value ? TRUE : FALSE;
+				else if (constraints[i]->op == LT)
+					result = result && constraints[i]->master <= value ? TRUE : FALSE;
+			} else {		
+				while (it != NULL) {
+					if (it->name == constraints[i]->master) {
+						if (constraints[i]->op == EQUAL)
+							result = result && it->value == value ? TRUE : FALSE;
+						else if (constraints[i]->op == DIFFERENT)
+							result = result && it->value != value ? TRUE : FALSE;
+						else if (constraints[i]->op == SGT)
+							result = result && it->value > value ? TRUE : FALSE;
+						else if (constraints[i]->op == SLT)
+							result = result && it->value < value ? TRUE : FALSE;
+						else if (constraints[i]->op == GT)
+							result = result && it->value >= value ? TRUE : FALSE;
+						else if (constraints[i]->op == LT)
+							result = result && it->value <= value ? TRUE : FALSE;
+
+						break;
+					}
+
+					it = it->ancestor;
+				}
+			}
+
+			if (!result)
+				return FALSE;
+		}
+	}
+
+	return result;
+}

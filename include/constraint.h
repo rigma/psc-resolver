@@ -2,6 +2,7 @@
 #define CONSTRAINT_H
 
 #include "defines.h"
+#include "tree.h"
 #include "str.h"
 #include "var.h"
 
@@ -22,5 +23,7 @@ typedef struct {
 
 constraint_t *constraint_init(var_t *slave, operator_t op, u64 master, master_t var);
 void constraint_free(constraint_t *c);
+
+bool_t constraint_check(size_t size, constraint_t **constraints, leaf_t *leaf, u64 slave, u64 value);
 
 #endif

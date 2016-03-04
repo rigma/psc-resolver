@@ -2,6 +2,7 @@
 build/
 obj/
 resources/
+psc-resolver.opensdf
 psc-resolver.sdf
 psc-resolver.v12.suo
 psc-resolver.VC.opendb
