@@ -169,7 +169,7 @@ bool_t problem_alloc(problem_t *p, leaf_t *root, var_t *var) {
             if (leaf == NULL)
                 exit(EXIT_FAILURE);
 
-            if (constraint_check(p, root, var->def->set[i])) {
+            if (constraint_check(p->n_constraints, p->constraints, root, var->name, var->def->set[i])) {
                 leaf_append(root, leaf);
             } else {
                 leaf_free(leaf);
