@@ -61,24 +61,24 @@ problem_t *problem_init(const char *filename) {
 		if (temp > 0)
 		{
 			tmpVar = var_init(temp);						// On Récupère le nom
-			fscanf(f, "%lu", temp);							// On lit le suivant
+			fscanf(f, "%lu", &temp);							// On lit le suivant
 			do {											//
 				var_add_to_definition(tmpVar, temp);		//
-				fscanf(f, "%lu", temp);						// On lit le suivant
+				fscanf(f, "%lu", &temp);						// On lit le suivant
 			} while (temp != -1);							// On continue jusqu'à -1 (fin de la ligne)
 			problem_add_var(p, tmpVar);						// On ajoute au problème
 		}
 	} while (temp != -2);
 	// On termine la lecture des variables par un -2
-	fscanf(f, "%lu", temp);									// Puis on commence la lecture des contraintes
+	fscanf(f, "%lu", &temp);									// Puis on commence la lecture des contraintes
 	do
 	{
-		fscanf(f, "%lu", tmp1);								// On lit l'operateur
-		fscanf(f, "%lu", tmp2);								// On lit la 2ème opérande
-		fscanf(f, "%lu", tmp3);								// Et on récupère son type (var ou scalaire)
+		fscanf(f, "%lu", &tmp1);								// On lit l'operateur
+		fscanf(f, "%lu", &tmp2);								// On lit la 2ème opérande
+		fscanf(f, "%lu", &tmp3);								// Et on récupère son type (var ou scalaire)
 		tmpConstraint = constraint_init(var_init(temp), tmp1, tmp2, tmp3);
 		problem_add_constraint(p, tmpConstraint);			// Puis on l'ajoute au problème
-		fscanf(f, "%lu", temp);
+		fscanf(f, "%lu", &temp);
 	} while (temp <= -2);									// Et ça se termine par un -3
 
 
@@ -214,7 +214,7 @@ void affichage(leaf_t *root) {
 		leaf_t *temp = root;
 		printf("Solution: ");
 		while (temp != NULL) {
-			printf( "%lu = %lu", temp->name, temp->value);
+			printf( "%lu = %lu", &temp->name, &temp->value);
 			temp = temp->ancestor;
 		}
 		printf("\n");
