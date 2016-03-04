@@ -5,6 +5,7 @@
 #include "str.h"
 #include "tree.h"
 #include "var.h"
+#include "list.h"
 
 typedef struct {
     string_t *name;
