@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include <problem.h>
+#include <tree.h>
 
 problem_t *problem_init(const char *filename) {
     problem_t *p = NULL;
@@ -138,4 +139,48 @@ bool_t problem_add_constraint(problem_t *p, constraint_t *constraints) {
 	p->n_constraints++;
 
 	return TRUE;
+}
+
+u64 *problem_solve(problem_t *p) {
+    tree_t root = NULL;
+    size_t i = 0;
+    u64 *solution = NULL;
+
+    if (p == NULL)
+        return NULL;
+
+    root = tree_init();
+    for (; i < p->n_vars ; i++) {
+        problem_alloc(p, root, p->vars[i]);
+   }
+
+    return solution;
+}
+
+bool_t problem_alloc(problem_t *p, leaf_t *root, var_t *var) {
+    leaf_t *leaf = NULL;
+    bool_t result = TRUE;
+    size_t i = 0;
+
+    if (root->n_children > 0) {
+        for (; i < root->n_children ; i++)
+            result = result && problem_alloc(p, root->children[i], var);
+    } else {
+        for (; i < var->def->size ; i++) {
+            leaf = leaf_init(var->def->set[i], root, var->name);
+            if (leaf == NULL)
+                exit(EXIT_FAILURE);
+
+            if (constraint_check(p, root, var->def->set[i])) {
+                leaf_append(root, leaf);
+            } else {
+                leaf_free(leaf);
+            }
+        }
+
+        if (root->n_children == 0)
+            result = FALSE;
+    }
+
+    return result;
 }

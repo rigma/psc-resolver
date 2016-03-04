@@ -6,7 +6,7 @@
 
 typedef struct leaf_t {
 	u64 name;
-    void *value;
+    u64 value;
     union {
         struct leaf_t **children;
         size_t n_children;
@@ -18,7 +18,7 @@ typedef leaf_t* tree_t;
 tree_t tree_init();
 void tree_free(tree_t t);
 
-leaf_t *leaf_init(void *value, leaf_t *ancestor, u64 name);
+leaf_t *leaf_init(u64 value, leaf_t *ancestor, u64 name);
 void leaf_free(leaf_t *l);
 
 void leaf_append(leaf_t *l, leaf_t *successor);

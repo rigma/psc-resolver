@@ -9,7 +9,7 @@ void tree_free(tree_t t) {
     leaf_free(t);
 }
 
-leaf_t *leaf_init(void *value, leaf_t *ancestor, u64 name) {
+leaf_t *leaf_init(u64 value, leaf_t *ancestor, u64 name) {
     leaf_t *l = (leaf_t*) malloc(sizeof(leaf_t));
     if (l == NULL)
         return NULL;
