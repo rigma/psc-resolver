@@ -1,0 +1,6 @@
+.vs/
+build/
+obj/
+resources/
+psc-resolver.sdf
+psc-resolver.v12.suo
