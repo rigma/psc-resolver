@@ -52,14 +52,7 @@ problem_t *problem_init(const char *filename) {
     }
 
 
-
-
-
-	printf("YOLO");
-	fscanf(f, "%lu", temp);
-	printf("WTF le fscanf qui ne marche pas!!!!!!!!!!!!!!!!!");
-
-
+	fscanf(f, "%lu", &temp);
 
 
 	// Lecture des variables/domaines de définitions
