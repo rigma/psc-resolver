@@ -180,6 +180,7 @@ u64 *list_to_u64table(list_t *l)
 	node_t *it = l->first;
 	for (; it != l->last;it = it->succ)
 		tab[i] = it->value;
+	free(it);
 }
 
 
