@@ -48,7 +48,7 @@ bool_t constraint_check(size_t size, constraint_t **constraints, leaf_t *leaf, u
 	
 	for (; i < size; i++)
 	{
-		if (slave == constraints[i]->slave)
+		if (slave == constraints[i]->slave->name)
 		{
 			if (constraints[i]->master_type == SCALAR) {
 				if (constraints[i]->op == EQUAL)

@@ -9,14 +9,10 @@
 
 typedef struct {
     string_t *name;
-	union {
-		var_t **vars;
-		size_t n_vars;
-	};
-	union {
-        constraint_t **constraints;
-        size_t n_constraints;
-    };
+    constraint_t **constraints;
+    var_t **vars;
+    size_t n_vars;
+    size_t n_constraints;
 } problem_t;
 
 problem_t *problem_init(const char *filename);

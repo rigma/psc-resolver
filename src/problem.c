@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include <problem.h>
 #include <tree.h>
@@ -53,6 +54,11 @@ problem_t *problem_init(const char *filename) {
         return NULL;
     }
 
+    p->n_vars = 0;
+    p->vars = NULL;
+    p->n_constraints = 0;
+    p->constraints = NULL;
+
 	fscanf(f, "%lu", &temp);
 	printf( "\n %lu",temp );
 	// Lecture des variables/domaines de définitions
@@ -101,7 +107,7 @@ void problem_free(problem_t *p)
 	size_t i = 0;
 
 	if (p == NULL)
-        return NULL;
+        return;
 	
 	for (; i < p->n_vars; i++)
 		var_free(p->vars[i]);
@@ -213,27 +219,21 @@ bool_t problem_alloc(problem_t *p, leaf_t *root, var_t *var) {
 
 
 void affichage(leaf_t *root) {
-
 	size_t i=0;
+
 	if (root->n_children > 0) {
 		for (; i < root->n_children; i++) {
-			return affichage(root->children[i]);
+			affichage(root->children[i]);
 		}
-
-	}
-	else {
+	} else {
 		leaf_t *temp = root;
-		printf("Solution: ");
-		while (temp != NULL) {
-			printf( " %lu = %lu ", &temp->name, &temp->value);
+		
+        fprintf(stdout, "Solution: ");
+        while (temp != NULL) {
+			fprintf(stdout, " %lu = %lu ", temp->name, temp->value);
 			temp = temp->ancestor;
 		}
-		printf("\n");
 
+		fprintf(stdout, "\n");
 	}
-
-
-
-
-
 }
