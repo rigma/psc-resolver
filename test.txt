@@ -1,0 +1,40 @@
+méthode  (F(feuille), problème; taille) (test sur feuille)
+{
+	 si size.variable = taille (vérification fin) // on est à une feuille
+		{
+			test toutes les contraintes.
+				si tout contraintes vérifiée : retourner la feuille/branche entière // c'est une solution
+				sinon ECHEC // ce n'est pas une solution
+		}
+	sinon (pas la fin) //on est à un noeud
+		{
+			faire
+			{
+				X->nom.variable(prit dans le problème) // on veut prendre une variable non utilisée auparavant
+			}tant que (X == nom d'un ancêtre)
+			var Y = var X	// on récupère les valeurs dans la variable
+			Pour toutes les valeur de Y (tant que, si...) //on va faire la méthode pour chaque valeur de la variable
+				{
+				création d'une feuille/noeud F', relliement à l'arbre
+				printf ("X = Y")
+				méthode (F', problème, taille+1)
+				si (non echec) retourner F'
+				}
+			retourner echec // pas possible de continuer sur la feuille/noeud
+		}
+}
+
+___________________________
+
+test contrainte (problème, F feuille)
+	pour toutes les contraintes
+		{
+			selon type de contrainte
+			Si test = vrai (test de la contrainte avec les F.ancestor.name correspondant (dans la contrainte))
+				return TRUE
+			else
+				return FALSE
+		}
+___________________________
+
+			bool_t constraint_check(size_t size, constraint_t **constraints, leaf_t *leaf, u64 value);

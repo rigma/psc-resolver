@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <str.h>
+#include <E7str.h>
 
 string_t *string_init(char *str) {
 	string_t *s = (string_t*) malloc(sizeof(string_t));

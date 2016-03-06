@@ -1,8 +1,8 @@
 #include <stdlib.h>
-#include <tree.h>
+#include <E7tree.h>
 
 tree_t tree_init() {
-    return leaf_init(NULL, NULL, NULL);
+    return leaf_init(0, NULL, NULL);
 }
 
 void tree_free(tree_t t) {
@@ -15,13 +15,16 @@ leaf_t *leaf_init(u64 value, leaf_t *ancestor, u64 name) {
         return NULL;
 
     l->value = value;
+	l->name = name;
+	l->n_children = 0;
+	l->children = NULL;
 
     if (ancestor != NULL) {
         leaf_append(ancestor, l);
         l->ancestor = ancestor;
-    }
-
-	l->name = name;
+	} else {
+		l->ancestor = NULL;
+	}
 
     return l;
 }
@@ -50,9 +53,9 @@ void leaf_append(leaf_t *l, leaf_t *successor) {
         return;
 
     if (l->n_children > 0)
-        tmp = malloc(sizeof(leaf_t*));
+		tmp = realloc(l->children, (l->n_children + 1) * sizeof(leaf_t*));
     else
-        tmp = realloc(l->children, (l->n_children + 1) * sizeof(leaf_t*));
+		tmp = malloc(sizeof(leaf_t*));
 
     if (tmp == NULL)
         return;

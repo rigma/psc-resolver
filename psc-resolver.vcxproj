@@ -40,7 +40,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -100,6 +100,9 @@
       <CompileAs>CompileAsC</CompileAs>
       <PreprocessorDefinitions>_MBCS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -109,6 +112,9 @@
       <CompileAs>CompileAsC</CompileAs>
       <PreprocessorDefinitions>_MBCS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -123,6 +129,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -138,27 +145,28 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\constraint.c" />
-    <ClCompile Include="src\list.c" />
-    <ClCompile Include="src\main.c" />
-    <ClCompile Include="src\problem.c" />
-    <ClCompile Include="src\set.c" />
-    <ClCompile Include="src\str.c" />
-    <ClCompile Include="src\tree.c" />
-    <ClCompile Include="src\var.c" />
+    <ClCompile Include="src\E7constraint.c" />
+    <ClCompile Include="src\E7list.c" />
+    <ClCompile Include="src\E7main.c" />
+    <ClCompile Include="src\E7problem.c" />
+    <ClCompile Include="src\E7set.c" />
+    <ClCompile Include="src\E7str.c" />
+    <ClCompile Include="src\E7tree.c" />
+    <ClCompile Include="src\E7var.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\constraint.h" />
-    <ClInclude Include="include\defines.h" />
-    <ClInclude Include="include\list.h" />
-    <ClInclude Include="include\problem.h" />
-    <ClInclude Include="include\set.h" />
-    <ClInclude Include="include\str.h" />
-    <ClInclude Include="include\tree.h" />
-    <ClInclude Include="include\var.h" />
+    <ClInclude Include="include\E7constraint.h" />
+    <ClInclude Include="include\E7defines.h" />
+    <ClInclude Include="include\E7list.h" />
+    <ClInclude Include="include\E7problem.h" />
+    <ClInclude Include="include\E7set.h" />
+    <ClInclude Include="include\E7str.h" />
+    <ClInclude Include="include\E7tree.h" />
+    <ClInclude Include="include\E7var.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\psc.l" />

@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <defines.h>
-#include <list.h>
+#include <E7defines.h>
+#include <E7list.h>
 
 list_t *list_init(list_t *l) {
 	node_t *it = NULL, *n = NULL, *previous = NULL;

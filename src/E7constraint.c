@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
-#include <constraint.h>
-#include <set.h>
+#include <E7constraint.h>
+#include <E7set.h>
 
 constraint_t *constraint_init(var_t *slave, operator_t op, u64 master, master_t master_type) {
 	constraint_t *c = (constraint_t*) malloc(sizeof(constraint_t));
@@ -37,7 +37,7 @@ void constraint_free(constraint_t *c) {
 	else if (c->master_type == SET)
 		set_free((set_t*) c->master);*/
 
-	free(c);
+	//free(c);
 }
  
 bool_t constraint_check(size_t size, constraint_t **constraints, leaf_t *leaf, u64 slave, u64 value)
@@ -46,7 +46,7 @@ bool_t constraint_check(size_t size, constraint_t **constraints, leaf_t *leaf, u
 	bool_t result = TRUE;
 	size_t i = 0; // compteur des variables
 	
-	for (; i < size; i++)
+	for (; i < size - 1; i++)
 	{
 		if (slave == constraints[i]->slave->name)
 		{

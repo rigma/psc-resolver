@@ -1,16 +1,14 @@
 #ifndef TREE_H
 #define TREE_H
 
-#include "defines.h"
+#include "E7defines.h"
 #include <stddef.h>
 
 typedef struct leaf_t {
 	u64 name;
     u64 value;
-    union {
-        struct leaf_t **children;
-        size_t n_children;
-    };
+    struct leaf_t **children;
+    size_t n_children;
     struct leaf_t *ancestor;
 } leaf_t;
 typedef leaf_t* tree_t;

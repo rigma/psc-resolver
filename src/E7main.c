@@ -1,12 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "problem.h"
+#include "E7problem.h"
 
 int main(int argc, char **argv) {
-	problem_t *p = problem_init("1.txt");
+	problem_t *p = problem_init("E71.txt");
 
-	printf("YAHOU");
+	u64 solution;
+
+	solution = problem_solve(p);
 
 	problem_free(p);
 

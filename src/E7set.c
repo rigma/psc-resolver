@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-#include <set.h>
+#include <E7set.h>
 
 set_t *set_init() {
 	set_t *s = (set_t*) malloc(sizeof(set_t));

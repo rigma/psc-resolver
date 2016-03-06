@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-#include <var.h>
+#include <E7var.h>
 
 var_t *var_init(u64 /*string_t  * */ name) {
 	var_t *var = (var_t*) malloc(sizeof(var_t));

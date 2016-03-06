@@ -3,8 +3,8 @@
 
 #include <stddef.h>
 
-#include "defines.h"
-#include "list.h"
+#include "E7defines.h"
+#include "E7list.h"
 
 typedef struct {
 	u64 *set;

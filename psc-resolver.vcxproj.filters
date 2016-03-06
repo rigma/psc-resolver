@@ -21,55 +21,55 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.c">
+    <ClCompile Include="src\E7constraint.c">
+      <Filter>Fichiers sources\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\E7list.c">
+      <Filter>Fichiers sources\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\E7problem.c">
+      <Filter>Fichiers sources\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\E7set.c">
+      <Filter>Fichiers sources\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\E7str.c">
+      <Filter>Fichiers sources\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\E7tree.c">
+      <Filter>Fichiers sources\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\E7var.c">
+      <Filter>Fichiers sources\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\E7main.c">
       <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\list.c">
-      <Filter>Fichiers sources\types</Filter>
-    </ClCompile>
-    <ClCompile Include="src\set.c">
-      <Filter>Fichiers sources\types</Filter>
-    </ClCompile>
-    <ClCompile Include="src\str.c">
-      <Filter>Fichiers sources\types</Filter>
-    </ClCompile>
-    <ClCompile Include="src\var.c">
-      <Filter>Fichiers sources\types</Filter>
-    </ClCompile>
-    <ClCompile Include="src\constraint.c">
-      <Filter>Fichiers sources\types</Filter>
-    </ClCompile>
-    <ClCompile Include="src\problem.c">
-      <Filter>Fichiers sources\types</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tree.c">
-      <Filter>Fichiers sources\types</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\defines.h">
+    <ClInclude Include="include\E7constraint.h">
+      <Filter>Fichiers d%27en-tête\types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\E7list.h">
+      <Filter>Fichiers d%27en-tête\types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\E7problem.h">
+      <Filter>Fichiers d%27en-tête\types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\E7set.h">
+      <Filter>Fichiers d%27en-tête\types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\E7str.h">
+      <Filter>Fichiers d%27en-tête\types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\E7tree.h">
+      <Filter>Fichiers d%27en-tête\types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\E7var.h">
+      <Filter>Fichiers d%27en-tête\types</Filter>
+    </ClInclude>
+    <ClInclude Include="include\E7defines.h">
       <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="include\set.h">
-      <Filter>Fichiers d%27en-tête\types</Filter>
-    </ClInclude>
-    <ClInclude Include="include\list.h">
-      <Filter>Fichiers d%27en-tête\types</Filter>
-    </ClInclude>
-    <ClInclude Include="include\str.h">
-      <Filter>Fichiers d%27en-tête\types</Filter>
-    </ClInclude>
-    <ClInclude Include="include\var.h">
-      <Filter>Fichiers d%27en-tête\types</Filter>
-    </ClInclude>
-    <ClInclude Include="include\constraint.h">
-      <Filter>Fichiers d%27en-tête\types</Filter>
-    </ClInclude>
-    <ClInclude Include="include\problem.h">
-      <Filter>Fichiers d%27en-tête\types</Filter>
-    </ClInclude>
-    <ClInclude Include="include\tree.h">
-      <Filter>Fichiers d%27en-tête\types</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

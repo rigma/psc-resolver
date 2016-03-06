@@ -1,10 +1,10 @@
 #ifndef CONSTRAINT_H
 #define CONSTRAINT_H
 
-#include "defines.h"
-#include "tree.h"
-#include "str.h"
-#include "var.h"
+#include "E7defines.h"
+#include "E7tree.h"
+#include "E7str.h"
+#include "E7var.h"
 
 typedef enum {
 	EQUAL = 0x0, DIFFERENT = 0x1, GT = 0x2, SGT = 0x3, LT = 0x4, SLT = 0x5

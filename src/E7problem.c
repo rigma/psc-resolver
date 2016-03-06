@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <problem.h>
-#include <tree.h>
+#include <E7problem.h>
+#include <E7tree.h>
 
 problem_t *problem_init(const char *filename) {
 
@@ -25,7 +25,7 @@ problem_t *problem_init(const char *filename) {
 		return NULL;
 	}
 
-	printf("le fichier a bien été ouvert");
+	printf("le fichier a bien ett ouvert");
 
 
 
@@ -112,7 +112,7 @@ void problem_free(problem_t *p)
 	if (p == NULL)
         return;
 	
-	for (; i < p->n_vars; i++)
+	for (; i < p->n_vars-1; i++)
 		var_free(p->vars[i]);
 	free(p->vars);
 
@@ -120,7 +120,6 @@ void problem_free(problem_t *p)
 		constraint_free(p->constraints[i]);
 	free(p->constraints);
 	
-	string_free(p->name);
 	free(p);
 }
 

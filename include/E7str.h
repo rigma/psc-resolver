@@ -3,7 +3,7 @@
 
 #include <stddef.h>
 
-#include "defines.h"
+#include "E7defines.h"
 
 typedef struct {
 	char *str;

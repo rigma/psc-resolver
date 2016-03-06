@@ -1,9 +1,9 @@
 #ifndef VAR_H
 #define VAR_H
 
-#include "defines.h"
-#include "set.h"
-#include "str.h"
+#include "E7defines.h"
+#include "E7set.h"
+#include "E7str.h"
 
 typedef struct {
 	//string_t *name;

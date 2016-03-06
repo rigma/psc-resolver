@@ -1,11 +1,11 @@
 #ifndef PROBLEM_H
 #define PROBLEM_H
 
-#include "constraint.h"
-#include "str.h"
-#include "tree.h"
-#include "var.h"
-#include "list.h"
+#include "E7constraint.h"
+#include "E7str.h"
+#include "E7tree.h"
+#include "E7var.h"
+#include "E7list.h"
 
 typedef struct {
     string_t *name;
