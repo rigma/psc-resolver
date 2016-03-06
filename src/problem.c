@@ -11,8 +11,8 @@ problem_t *problem_init(const char *filename) {
     FILE *f = NULL;
     char *str = NULL;
 	constraint_t *tmpConstraint = NULL;
-	u64 temp = 0;
-	u64 tmp1 = 0, tmp2 = 0, tmp3 = 0;
+	long temp = 0;
+	long tmp1 = 0, tmp2 = 0, tmp3 = 0;
 	list_t *tmpList = NULL;
 	var_t *tmpVar = NULL;
 
@@ -59,42 +59,45 @@ problem_t *problem_init(const char *filename) {
     p->n_constraints = 0;
     p->constraints = NULL;
 
-	fscanf(f, "%lu", &temp);
-	printf( "\n %lu",temp );
+	fscanf(f, "%ld", &temp);
+	fprintf(stdout, "\n %lu",temp );
 	// Lecture des variables/domaines de définitions
 	do
 	{
 		if (temp > 0)
 		{
-			tmpVar = var_init(temp);						// On Récupère le nom
-			fscanf(f, "%lu", &temp);							// On lit le suivant
-			do {											//
+			tmpVar = var_init((u64) temp);						// On Récupère le nom
+			fscanf(f, "%ld", &temp);							// On lit le suivant
 
-				var_add_to_definition(tmpVar, temp);		//
-
-				fscanf(f, "%lu", &temp);						// On lit le suivant
+            do {											//
+				var_add_to_definition(tmpVar, (u64) temp);		//
+				fscanf(f, "%ld", &temp);						// On lit le suivant
 			} while (temp != -1);							// On continue jusqu'à -1 (fin de la ligne)
 
 			problem_add_var(p, tmpVar);						// On ajoute au problème
-
+            fscanf(f, "%ld", &temp);
 		}
 	} while (temp != -2);
 	// On termine la lecture des variables par un -2
-	fscanf(f, "%lu", &temp);									// Puis on commence la lecture des contraintes
+	fscanf(f, "%ld", &temp);									// Puis on commence la lecture des contraintes
 
 	do
 	{
-		fscanf(f, "%lu", &tmp1);								// On lit l'operateur
-		fscanf(f, "%lu", &tmp2);								// On lit la 2ème opérande
-		fscanf(f, "%lu", &tmp3);								// Et on récupère son type (var ou scalaire)
-		tmpConstraint = constraint_init(var_init(temp), tmp1, tmp2, tmp3);
+		fscanf(f, "%ld", &tmp1);								// On lit l'operateur
+		fscanf(f, "%ld", &tmp2);								// On lit la 2ème opérande
+		fscanf(f, "%ld", &tmp3);								// Et on récupère son type (var ou scalaire)
+
+		tmpConstraint = constraint_init(var_init(temp), (u64) tmp1, (u64) tmp2, (u64) tmp3);
+
 		problem_add_constraint(p, tmpConstraint);			// Puis on l'ajoute au problème
-		fscanf(f, "%lu", &temp);
+		
+        fscanf(f, "%ld", &temp);
 	} while (temp != -3);									// Et ça se termine par un -3
 
 
     fclose(f);
-	printf(" \n le fichier a bien ete fermer.");
+	fprintf(stdout, " \n le fichier a bien ete fermer.");
+
 	free(tmpConstraint);
 	free(tmpList);
 	free(tmpVar);
@@ -127,7 +130,7 @@ bool_t problem_add_var(problem_t *p, var_t *var) {
 	if (p == NULL || var == NULL)
 		return FALSE;
 
-	if (p->n_vars > 1)
+	if (p->n_vars > 0)
 		tmp = realloc(p->vars, (p->n_vars + 1) * sizeof(var_t*));
 	else
 		tmp = malloc(sizeof(var_t));
@@ -148,7 +151,7 @@ bool_t problem_add_constraint(problem_t *p, constraint_t *constraints) {
 	if (p == NULL || constraints == NULL)
 		return FALSE;
 
-	if (p->n_constraints > 1)
+	if (p->n_constraints > 0)
 		tmp = realloc(p->constraints, (p->n_constraints + 1) * sizeof(constraint_t*));
 	else
 		tmp = malloc(sizeof(constraint_t));
