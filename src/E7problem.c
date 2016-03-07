@@ -9,12 +9,13 @@ problem_t *problem_init(const char *filename) {
 
     problem_t *p = NULL;
     FILE *f = NULL;
-    char *str = NULL;
+//    char *str = NULL;
 	constraint_t *tmpConstraint = NULL;
 	long temp = 0;
 	long tmp1 = 0, tmp2 = 0, tmp3 = 0;
 	list_t *tmpList = NULL;
 	var_t *tmpVar = NULL;
+	size_t i = 0;
 
     if (filename == NULL)
         return NULL;
@@ -25,9 +26,7 @@ problem_t *problem_init(const char *filename) {
 		return NULL;
 	}
 
-	printf("le fichier a bien ett ouvert");
-
-
+	printf("Le fichier a bien ete ouvert");
 
     p = (problem_t*) malloc(sizeof(problem_t));
     if (p == NULL) {
@@ -44,7 +43,6 @@ problem_t *problem_init(const char *filename) {
         return NULL;
     }
 
-
     p->name->str = (char*) malloc((strlen(filename) - 3) * sizeof(char));
     if (p->name->str == NULL) {
         string_free(p->name);
@@ -60,7 +58,6 @@ problem_t *problem_init(const char *filename) {
     p->constraints = NULL;
 
 	fscanf(f, "%ld", &temp);
-	fprintf(stdout, "\n %lu",temp );
 	// Lecture des variables/domaines de définitions
 	do
 	{
@@ -78,6 +75,11 @@ problem_t *problem_init(const char *filename) {
             fscanf(f, "%ld", &temp);
 		}
 	} while (temp != -2);
+	
+	for (i = 0; i < p->n_vars; i++)
+		fprintf(stdout, "%lu ; ", p->vars[i]->name);
+	fprintf(stdout, "\n");
+
 	// On termine la lecture des variables par un -2
 	fscanf(f, "%ld", &temp);									// Puis on commence la lecture des contraintes
 
@@ -96,7 +98,7 @@ problem_t *problem_init(const char *filename) {
 
 
     fclose(f);
-	fprintf(stdout, " \n le fichier a bien ete fermer.");
+	fprintf(stdout, " \nLe fichier a bien ete ferme\n");
 
 	free(tmpConstraint);
 	free(tmpList);
@@ -132,7 +134,7 @@ bool_t problem_add_var(problem_t *p, var_t *var) {
 	if (p->n_vars > 0)
 		tmp = realloc(p->vars, (p->n_vars + 1) * sizeof(var_t*));
 	else
-		tmp = malloc(sizeof(var_t));
+		tmp = malloc(sizeof(var_t*));
 
 	if (tmp == NULL)
 		return FALSE;
@@ -166,6 +168,7 @@ bool_t problem_add_constraint(problem_t *p, constraint_t *constraints) {
 }
 
 u64 *problem_solve(problem_t *p) {
+	bool_t result;
     tree_t root = NULL;
     size_t i = 0;
     u64 *solution = NULL;
@@ -175,7 +178,7 @@ u64 *problem_solve(problem_t *p) {
 
     root = tree_init();
 	for (; i < p->n_vars; i++) {
-		problem_alloc(p, root, p->vars[i]);
+		result = problem_alloc(p, root, p->vars[i]);
 	}
 
 
@@ -199,20 +202,20 @@ bool_t problem_alloc(problem_t *p, leaf_t *root, var_t *var) {
         for (; i < root->n_children ; i++)
             result = result && problem_alloc(p, root->children[i], var);
     } else {
-        for (; i < var->def->size ; i++) {
-            leaf = leaf_init(var->def->set[i], root, var->name);
-            if (leaf == NULL)
-                exit(EXIT_FAILURE);
+		printf("%lu ; \n", var->name);
+		leaf = leaf_init(var->def->set[var->name - 1], NULL, var->name);
+		if (leaf == NULL)
+			exit(EXIT_FAILURE);
 
-            if (constraint_check(p->n_constraints, p->constraints, root, var->name, var->def->set[i])) {
-                leaf_append(root, leaf);
-            } else {
-                leaf_free(leaf);
-            }
-        }
+		if (constraint_check(p->n_constraints, p->constraints, root, var->name, var->def->set[var->name - 1])) {
+			leaf_append(root, leaf);
+			leaf->ancestor = root;
+		} else {
+			leaf_free(leaf);
+		}
 
-        if (root->n_children == 0)
-            result = FALSE;
+		if (root->n_children == 0)
+			result = FALSE;
     }
 
     return result;
@@ -234,6 +237,7 @@ void affichage(leaf_t *root) {
         while (temp != NULL) {
 			fprintf(stdout, " %lu = %lu ", temp->name, temp->value);
 			temp = temp->ancestor;
+
 		}
 
 		fprintf(stdout, "\n");
